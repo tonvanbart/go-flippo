@@ -40,11 +40,52 @@ func isWinning(board [3][3]bool) bool {
 }
 
 // modify the board by flipping the indicated field and it's neighbours.
-func flip(board [3][3]bool, move int) {
+// Note that the array is changed in-place.
+func flip(board *[3][3]bool, move int) {
 	if move == 1 {
-		// stuff
-	}
+		flipField(board, 1)
+		flipField(board, 2)
+		flipField(board, 4)
+		flipField(board, 5)
+	} else if move == 3 {
+		flipField(board, 2)
+		flipField(board, 3)
+		flipField(board, 5)
+		flipField(board, 6)
+	} else if move == 7 {
+		flipField(board, 4)
+		flipField(board, 5)
+		flipField(board, 7)
+		flipField(board, 8)
+	} else if move == 9 {
+		flipField(board, 5)
+		flipField(board, 6)
+		flipField(board, 8)
+		flipField(board, 9)
+	} else if move == 2 {
+		flipField(board, 1)
+		flipField(board, 2)
+		flipField(board, 3)
+	} else if move == 8 {
+		flipField(board, 7)
+		flipField(board, 8)
+		flipField(board, 9)
+	} else if move == 4 {
 
+		flipField(board, 1)
+		flipField(board, 4)
+		flipField(board, 7)
+	} else if move == 6 {
+		flipField(board, 3)
+		flipField(board, 6)
+		flipField(board, 9)
+	} else if move == 5 {
+		flipField(board, 2)
+		flipField(board, 4)
+		flipField(board, 5)
+		flipField(board, 6)
+		flipField(board, 8)
+	}
 }
 
 // flip a single field on the board, converting the move 1-9 to row and column coordinates.
@@ -52,9 +93,7 @@ func flip(board [3][3]bool, move int) {
 func flipField(board *[3][3]bool, move int) {
 	row := (move - 1) / 3
 	col := (move - 1) % 3
-	fmt.Printf("going to flip row=%d col=%d, before is %t\n", row, col, board[row][col])
 	board[row][col] = !board[row][col]
-	fmt.Printf("after flipping row=%d col=%d, value is now %t\n", row, col, board[row][col])
 	// return board
 }
 
